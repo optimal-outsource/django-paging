@@ -15,8 +15,8 @@ class BetterPaginator(Paginator):
     def get_context(self, page, range_gap=5):
         try:
             page = int(page)
-        except (ValueError, TypeError), exc:
-            raise InvalidPage, exc
+        except (ValueError, TypeError) as exc:
+            raise InvalidPage(exc)
         
         try:
             paginator = self.page(page)
@@ -36,7 +36,7 @@ class BetterPaginator(Paginator):
             end = self.num_pages+1
 
         context = {
-            'page_range': range(start, end),
+            'page_range': list(range(start, end)),
             'objects': paginator.object_list,
             'num_pages': self.num_pages,
             'page': page,
@@ -85,7 +85,7 @@ class EndlessPaginator(BetterPaginator):
     def get_context(self, page):
         try:
             paginator = self.page(page)
-        except (PageNotAnInteger, EmptyPage), exc:
+        except (PageNotAnInteger, EmptyPage) as exc:
             return {'EMPTY_PAGE': True}
 
         context = {
