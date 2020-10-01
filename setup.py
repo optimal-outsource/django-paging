@@ -9,12 +9,12 @@ tests_require = [
 
 setup(
     name='django-paging',
-    version='0.3',
+    version='0.4',
     author='David Cramer, Adam Stein',
     author_email='adam@csh.rit.edu',
     url='http://github.com/optimal-outsource/django-paging',
     install_requires=[
-        'django-templatetag-sugar>=0.1',
+        'django-templatetag-sugar>=1.1',
     ],
     tests_require=tests_require,
     extras_require={'test': tests_require},
